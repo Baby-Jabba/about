@@ -14,11 +14,13 @@
   "description": "TripAdvisor About Widget",
   "main": "server/index.js",
   "scripts": {
+    "build":"npx webpack",
+    "build:dev": "npx webpack --watch",
     "test": "jest",
     "start": "node server/index.js",
     "start:dev": "nodemon server/index.js",
     "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
-    "db": "mysql -u root < database/schema.sql",
+    "db": "mysql -u student -p < database/schema.sql",
     "seed": "node database/config.js"
   },
   "nodemonConfig": {

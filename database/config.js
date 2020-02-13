@@ -3,7 +3,7 @@ const connection = require('./db.js');
 
 let counter = 0;
 
-const seed = () => {
+const seed = (number) => {
   let average = faker.finance.amount(3, 5, 1);
   let location = faker.finance.amount(3, 5, 1);
   let cleanliness = faker.finance.amount(3, 5, 1);
@@ -238,15 +238,14 @@ const seed = () => {
       console.log('error at database/config.js INSERT INTO', err);
     } else {
       counter++;
-      console.log(counter, 'data has been inserted');
-      if (counter < 100) {
+      if (counter < number) {
         seed();
       }
     }
   });
 };
 
-seed();
+seed(100);
 
 module.exports = seed;
 //

@@ -1,5 +1,12 @@
 const faker = require('faker');
-const connection = require('./db.js');
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+  host: process.env.RDS_HOST || 'localhost',
+  user: process.env.RDS_USERNAME || 'student',
+  password: process.env.RDS_PASSWORD || 'student',
+  database: 'HRR43_FEC'
+});
+connection.connect();
 
 let counter = 0;
 
@@ -239,13 +246,16 @@ const seed = (number) => {
     } else {
       counter++;
       if (counter < number) {
-        seed();
+        seed(number);
+      } else {
+        console.log(`Database seeded with ${number} entries.`);
+        connection.end();
       }
     }
   });
 };
 
-seed(100);
+seed(10000);
 
 module.exports = seed;
 //

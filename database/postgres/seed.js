@@ -1,7 +1,7 @@
 const { Client, Pool } = require('pg');
 const load = require('../load.js');
 
-const records = 100000;
+const records = 10000000;
 const batch = 10000;
 
 const client = new Client({

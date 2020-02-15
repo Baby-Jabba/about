@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const connection = require('../database/db.js');
-var seed = require('../database/config.js');
+const connection = require('../database/postgres').db;
+var db = require('../database/postgres');
 
 
 router.route('/:id')
@@ -21,14 +21,22 @@ router.route('/:id')
     let queryKey = Object.keys(query)[0];
     let id = req.params.id;
     console.log([queryKey, query[queryKey], id]);
-    connection.query(`UPDATE about SET ${queryKey}=? WHERE id=?`, [query[queryKey], id]);
+    db.connection.query(`UPDATE about SET ${queryKey}=? WHERE id=?`, [query[queryKey], id]);
   })
   .post((req, res) => {
-    seed(1);
+    db.insert((err, data) => {
+      if (err) {
+        console.log(err);
+        res.status(400).send(err);
+      } else {
+        res.status(200).send();
+      }
+
+    });
   })
   .delete((req, res) => {
     let param = req.params.id;
-    connection.query('DELETE FROM about WHERE id=(?)', [param], (err, data) => {
+    db.query('DELETE FROM about WHERE id=(?)', [param], (err, data) => {
       if (err) {
         console.log('error, could not delete: ', err);
       } else {
@@ -40,7 +48,7 @@ router.route('/:id')
 // TO DISPLAY SEEDED DATA IN POSTMAN
 router.route('/display-seed')
   .get((req, res) => {
-    connection.query('SELECT * FROM about', (err, data) => {
+    db.query('SELECT * FROM about', (err, data) => {
       if (err) {
         console.log('error at server/router.js /display-seed', err);
       } else {

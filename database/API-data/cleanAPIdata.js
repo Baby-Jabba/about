@@ -3524,7 +3524,7 @@ let folder = 1;
 let imgCounter = 0;
 
 const downloadImages = (obj) => {
-
+  makeDirectories();
   let url = obj.photo;
   axios({
     method: 'GET',

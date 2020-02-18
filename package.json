@@ -14,14 +14,17 @@
   "description": "TripAdvisor About Widget",
   "main": "server/index.js",
   "scripts": {
-    "build":"npx webpack",
+    "download": "node database/API-data/cleanAPIdata.js",
+    "build": "npx webpack",
     "build:dev": "npx webpack --watch",
     "test": "jest",
     "start": "node server/index.js",
     "start:dev": "nodemon server/index.js",
     "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
     "db": "mysql -u student -p < database/schema.sql",
-    "seed": "node database/config.js"
+    "seed": "node database/seed.js",
+    "seed:postgres": "node database/postgres/seed.js",
+    "write": "node database/cassandra/load.js"
   },
   "nodemonConfig": {
     "watch": "server/*"
@@ -56,11 +59,14 @@
     "axios": "^0.19.2",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
+    "cassandra-driver": "^4.4.0",
+    "csv-writer": "^1.6.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "jest-junit": "^10.0.0",
     "morgan": "^1.9.1",
     "mysql": "^2.18.1",
+    "pg": "^7.18.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }

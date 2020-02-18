@@ -1,5 +1,5 @@
 import React from 'react';
-import {Global, css, jsx} from '@emotion/core';
+import { Global, css, jsx } from '@emotion/core';
 import styles from '../css/AboutCSS.js';
 import Ratings from './Ratings.jsx';
 import Superlatives from './Superlatives.jsx';
@@ -140,11 +140,7 @@ class About extends React.Component {
     fetch(`/api/about/${id}`)
       .then(data => data.json())
       .then(data => {
-        if (data.data) {
-          data = data.data[0];
-        } else {
-          data = data[0];
-        }
+        console.log(data);
         let {
           average,
           location,
@@ -371,26 +367,26 @@ class About extends React.Component {
 
   handleSuperlativeMouseOver(e) {
     if (e.target.innerText === 'Certificate of Excellence') {
-      this.setState({coePopup: true});
+      this.setState({ coePopup: true });
     } else if (e.target.innerText === 'GreenLeaders GreenPartner') {
-      this.setState({greenLeadersHover: true});
+      this.setState({ greenLeadersHover: true });
     }
   }
 
   handleSuperlativeMouseOut(e) {
     if (e.target.innerText === 'Certificate of Excellence') {
-      this.setState({coePopup: false});
+      this.setState({ coePopup: false });
     } else if (e.target.innerText === 'GreenLeaders GreenPartner') {
-      setTimeout(() => this.setState({greenLeadersHover: false}), 0);
+      setTimeout(() => this.setState({ greenLeadersHover: false }), 0);
     }
   }
 
   handleGreenLeadersPopupMouseOver(e) {
-    this.setState({greenLeadersPopupHover: true});
+    this.setState({ greenLeadersPopupHover: true });
   }
 
   handleGreenLeadersPopupMouseOut(e) {
-    this.setState({greenLeadersPopupHover: false});
+    this.setState({ greenLeadersPopupHover: false });
   }
 
   render() {

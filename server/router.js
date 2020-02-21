@@ -7,8 +7,14 @@ var db = require('../database/postgres');
 router.route('/:id')
   .get((req, res) => {
     connection.query('SELECT data FROM destinations WHERE id = $1 LIMIT 1', [req.params.id])
-      .then((result) => { res.send(result.rows[0].data); })
-      .catch((err) => {
+      .then(result => {
+        if (!result.rows[0]) {
+          res.status(404).send('destination not found');
+        } else {
+          res.send(result.rows[0].data);
+        }
+      })
+      .catch(err => {
         console.log(err);
         res.send(err);
       });
@@ -17,28 +23,34 @@ router.route('/:id')
     let query = req.query;
     let queryKey = Object.keys(query)[0];
     let id = req.params.id;
-    console.log([queryKey, query[queryKey], id]);
-    db.connection.query(`UPDATE about SET ${queryKey}=? WHERE id=?`, [query[queryKey], id]);
+    connection.query('UPDATE destinations SET data=$1 WHERE id=$2', [query[queryKey], id])
+      .then(result => { res.send(`item #${id} updated`); })
+      .catch(err => {
+        console.log(err);
+        res.send(err);
+      });
   })
   .post((req, res) => {
-    db.insert((err, data) => {
-      if (err) {
+    connection.insert()
+      .then(data => { res.status(200).send(`item #${data.rows[0].id} created`); })
+      .catch(err => {
         console.log(err);
-        res.status(400).send(err);
-      } else {
-        res.status(200).send();
-      }
-
-    });
+        res.send(err);
+      });
   })
   .delete((req, res) => {
     let param = req.params.id;
-    db.query('DELETE FROM about WHERE id=(?)', [param], (err, data) => {
-      if (err) {
-        console.log('error, could not delete: ', err);
-      } else {
-      }
-    });
+    db.query('DELETE FROM destinations WHERE id=($1)', [param])
+      .then((result) => {
+        if (result.rowCount === 0) {
+          res.status(404).send('destination not found');
+        } else {
+          res.status(200).send(`deleted item ${param}`);
+        }
+      })
+      .catch(err => {
+        res.status(400).send(err);
+      });
   });
 
 

@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const router = require('./router.js');
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use('/bundle.js', express.static(__dirname + '/../public/bundle.js')); // for proxy server

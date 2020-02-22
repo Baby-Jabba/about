@@ -3,3 +3,5 @@ API_KEY.js
 images
 database/cassandra/destinations.csv
 public/bundle.js
+test.jtl
+jmeter.log

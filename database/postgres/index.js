@@ -12,10 +12,10 @@ client.connect()
 
 
 module.exports = {
-  insert: () => {
-    let seedSql = 'INSERT INTO destinations (data) VALUES';
-    let values = load(1);
-    return client.query(`INSERT INTO destinations (data) VALUES ${values} RETURNING id`);
+  insert: (values) => {
+    // let seedSql = 'INSERT INTO destinations (data) VALUES';
+    // let values = load(1);
+    return client.query('INSERT INTO destinations (data) VALUES ($1)', [JSON.stringify(values)]);
   },
   query: (text, params, callback) => {
     return client.query(text, params, callback);

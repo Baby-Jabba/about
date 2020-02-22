@@ -5,3 +5,5 @@ database/cassandra/destinations.csv
 public/bundle.js
 test.jtl
 jmeter.log
+newrelic.js
+newrelic_agent.log

@@ -31,8 +31,8 @@ router.route('/:id')
       });
   })
   .post((req, res) => {
-    connection.insert()
-      .then(data => { res.status(200).send(`item #${data.rows[0].id} created`); })
+    connection.insert(req.body)
+      .then(() => { res.status(200).send('success!'); })
       .catch(err => {
         console.log(err);
         res.send(err);

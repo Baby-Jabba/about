@@ -15,7 +15,7 @@
   "main": "server/index.js",
   "scripts": {
     "download": "node database/API-data/cleanAPIdata.js",
-    "build": "npx webpack --config webpack.prod.js",
+    "build": "npx webpack",
     "build:dev": "npx webpack --watch",
     "test": "jest",
     "start": "node server/index.js",

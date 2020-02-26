@@ -9,11 +9,11 @@ class RatingsCircles extends React.Component {
 
   render() {
     let r = this.props.rating;
-
+    console.log(r);
     switch (true) {
     case this.props.rating === undefined: // for tests
       return null;
-    case r === 0:
+    case r == 0:
       return (
         <styles.circleContainer>
           <styles.outerCircle>
@@ -64,7 +64,7 @@ class RatingsCircles extends React.Component {
           }
         </styles.circleContainer>
       );
-    case r === 1:
+    case r == 1:
       return (
         <styles.circleContainer>
           <styles.outerCircle>
@@ -121,7 +121,7 @@ class RatingsCircles extends React.Component {
           }
         </styles.circleContainer>
       );
-    case r === 2:
+    case r == 2:
       return (
         <styles.circleContainer>
           <styles.outerCircle>
@@ -184,7 +184,7 @@ class RatingsCircles extends React.Component {
           }
         </styles.circleContainer>
       );
-    case r === 3:
+    case r == 3:
       return (
         <styles.circleContainer>
           <styles.outerCircle>
@@ -253,7 +253,7 @@ class RatingsCircles extends React.Component {
           }
         </styles.circleContainer>
       );
-    case r === 4:
+    case r == 4:
       return (
         <styles.circleContainer>
           <styles.outerCircle>
@@ -328,7 +328,7 @@ class RatingsCircles extends React.Component {
           }
         </styles.circleContainer>
       );
-    case r === 5:
+    case r == 5:
       return (
         <styles.circleContainer>
           <styles.outerCircle>

@@ -36,7 +36,7 @@ class HotelClass extends React.Component {
           <i className={hollow} css={styles.i}></i>
         </div>
       );
-    case r === 1:
+    case r == 1:
       return (
         <div css={styles.div}>
           <i className={full} css={styles.i}></i>
@@ -56,7 +56,7 @@ class HotelClass extends React.Component {
           <i className={hollow} css={styles.i}></i>
         </div>
       );
-    case r === 2:
+    case r == 2:
       return (
         <div css={styles.div}>
           <i className={full} css={styles.i}></i>
@@ -76,7 +76,7 @@ class HotelClass extends React.Component {
           <i className={hollow} css={styles.i}></i>
         </div>
       );
-    case r === 3:
+    case r == 3:
       return (
         <div css={styles.div}>
           <i className={full} css={styles.i}></i>
@@ -96,7 +96,7 @@ class HotelClass extends React.Component {
           <i className={hollow} css={styles.i}></i>
         </div>
       );
-    case r === 4:
+    case r == 4:
       return (
         <div css={styles.div}>
           <i className={full} css={styles.i}></i>
@@ -116,7 +116,7 @@ class HotelClass extends React.Component {
           <i className={half} css={styles.i}></i>
         </div>
       );
-    case r === 5:
+    case r == 5:
       return (
         <div css={styles.div}>
           <i className={full} css={styles.i}></i>
